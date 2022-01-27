@@ -1,0 +1,82 @@
+<!Doctype Html>  
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/ju/dt-1.11.4/datatables.min.css"/>
+<script type-"text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+ <script type-"text/javascript" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/ju/dt-1.11.4/datatables.min.js"></script>
+<script type= "text/javascript">
+    $(document).ready(function() {
+    $('#pokemonlist').DataTable({
+        "pagingType": "full_numbers"
+    });
+    } );
+</script>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <button type="button" class="btn btn-primary" id="legend">Legendary Pokemons</button>  
+    </div>
+    <div class="alert alert-primary" role="alert">
+        Check-out the list of Pokemons with their attributes
+    </div>
+    <div class="row justify-content-center" style="color:Red">
+            <h1>Pokemon Directory</h1>
+    </div>
+    <table id="pokemonlist" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+        <tr>
+            <th>I.D</th>
+            <th>Name</th>
+            <th>Type_1</th>
+            <th>Type_2</th>
+            <th>Total</th>
+            <th>HP</th>
+            <th>Attack</th>
+            <th>Defense</th>
+            <th>Sp.Attack</th>
+            <th>Sp.Defense</th>
+            <th>Speed</th>
+            <th>Generation</th>
+            <th>Legendary</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%
+        if(pokeData.length!=0){
+        var i=1;
+        pokeData.forEach(function(data){
+        %>
+        <tr>
+            <td><%=i; %></td>
+            <td><%=data.Name %></td>
+            <td><%=data.Type1 %></td>
+            <td><%=data.Type2 %></td>
+            <td><%=data.Total %></td>
+            <td><%=data.HP %></td>
+            <td><%=data.Attack %></td>
+            <td><%=data.Defense %></td>
+            <td><%=data.Sp_Attack %></td>
+            <td><%=data.Sp_defense %></td>
+            <td><%=data.Speed %></td>
+            <td><%=data.Generation %></td>
+            <td><%=data.Legendary %></td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+        </tbody>  
+    </table>
+    </div>
+<script type= "text/javascript">
+    $("#legend").click(function(){
+    $(location).attr('href','/legendary')
+});
+</script>
+</body>
+</html>
